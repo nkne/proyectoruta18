@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            width: 95%;
+            margin: 0 auto;
+            position: relative;
+            height: 60px;
+        }
+
+        .header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.5;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .search-container {
+            width: 95%;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        input[type="text"] {
+            width: 95%;
+            max-width: 400px;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        .card-container {
+            width: 95%;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card {
+            width: 100%;
+            margin: 10px 0;
+            padding: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card img {
+            width: 100%;
+            max-height: 200px; /* Establece la altura máxima de la imagen */
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        h2, h3 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <img src="https://elenviador.com/wp-content/uploads/2021/01/gastronomia-mexicana.jpg" alt="Imagen gastronómica transparente">
+        <h2>Ejemplo de Tarjetas de Bares</h2>
+    </div>
+    
+    <div class="search-container">
+        <input type="text" id="myInput" onkeyup="searchCards()" placeholder="Buscar...">
+    </div>
+
+    <div class="card-container" id="cardContainer">
+        <!-- Las tarjetas se agregarán aquí dinámicamente con JavaScript -->
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Datos ficticios de bares
+            var bars = [
+                { name: "Bar Uno", address: "Dirección Uno", openingHours: "18:00 - 02:00", rating: 4.5, specialty: "Tapas", atmosphere: "Ambiente relajado", image: "https://placekitten.com/300/200", maps: "https://maps.google.com/?q=-34.9075,-56.1919", contact: "https://wa.me/1234567890" },
+                { name: "Bar Dos", address: "Dirección Dos", openingHours: "17:00 - 01:00", rating: 4.0, specialty: "Cervezas artesanales", atmosphere: "Estilo moderno", image: "https://placekitten.com/300/201", maps: "https://maps.google.com/?q=-34.9105,-56.1829", contact: "https://wa.me/1234567890" },
+                { name: "Bar Tres", address: "Dirección Tres", openingHours: "20:00 - 03:00", rating: 4.8, specialty: "Cocktails", atmosphere: "Atmósfera elegante", image: "https://placekitten.com/300/202", maps: "https://maps.google.com/?q=-34.9067,-56.1910", contact: "https://wa.me/1234567890" },
+                { name: "Bar Cuatro", address: "Dirección Cuatro", openingHours: "19:00 - 02:30", rating: 3.5, specialty: "Parrilla", atmosphere: "Estilo rústico", image: "https://placekitten.com/300/203", maps: "https://maps.google.com/?q=-34.9085,-56.1900", contact: "https://wa.me/1234567890" },
+                { name: "Bar Cinco", address: "Dirección Cinco", openingHours: "18:30 - 01:00", rating: 4.2, specialty: "Coctelería", atmosphere: "Ambiente animado", image: "https://placekitten.com/300/204", maps: "https://maps.google.com/?q=-34.9055,-56.1879", contact: "https://wa.me/1234567890" },
+                { name: "Bar Seis", address: "Dirección Seis", openingHours: "20:30 - 02:30", rating: 4.6, specialty: "Vinos", atmosphere: "Estilo vintage", image: "https://placekitten.com/300/205", maps: "https://maps.google.com/?q=-34.9095,-56.1869", contact: "https://wa.me/1234567890" },
+                { name: "Bar Siete", address: "Dirección Siete", openingHours: "19:00 - 02:00", rating: 4.1, specialty: "Tapas y música en vivo", atmosphere: "Ambiente acogedor", image: "https://placekitten.com/300/206", maps: "https://maps.google.com/?q=-34.9075,-56.1919", contact: "https://wa.me/1234567890" },
+                { name: "Bar Ocho", address: "Dirección Ocho", openingHours: "18:30 - 01:30", rating: 4.4, specialty: "Comida gourmet", atmosphere: "Estilo contemporáneo", image: "https://placekitten.com/300/207", maps: "https://maps.google.com/?q=-34.9085,-56.1839", contact: "https://wa.me/1234567890" },
+                { name: "Bar Nueve", address: "Dirección Nueve", openingHours: "19:30 - 02:00", rating: 3.9, specialty: "Cervezas y pizza", atmosphere: "Ambiente joven", image: "https://placekitten.com/300/208", maps: "https://maps.google.com/?q=-34.9105,-56.1909", contact: "https://wa.me/1234567890" },
+                { name: "Bar Diez", address: "Dirección Diez", openingHours: "20:00 - 03:00", rating: 4.7, specialty: "Cocktails y música en vivo", atmosphere: "Estilo bohemio", image: "https://placekitten.com/300/209", maps: "https://maps.google.com/?q=-34.9096,-56.1875", contact: "https://wa.me/1234567890" },
+                { name: "Bar Once", address: "Dirección Once", openingHours: "21:00 - 04:00", rating: 4.2, specialty: "Gastronomía internacional", atmosphere: "Moderno y elegante", image: "https://placekitten.com/300/210", maps: "https://maps.google.com/?q=-34.9078,-56.1890", contact: "https://wa.me/1234567890" },
+                { name: "Bar Doce", address: "Dirección Doce", openingHours: "18:00 - 01:00", rating: 4.0, specialty: "Cafetería y postres", atmosphere: "Ambiente acogedor", image: "https://placekitten.com/300/211", maps: "https://maps.google.com/?q=-34.9090,-56.1850", contact: "https://wa.me/1234567890" },
+                { name: "Bar Trece", address: "Dirección Trece", openingHours: "19:00 - 02:00", rating: 4.5, specialty: "Cocina local", atmosphere: "Rústico y tradicional", image: "https://placekitten.com/300/212", maps: "https://maps.google.com/?q=-34.9082,-56.1880", contact: "https://wa.me/1234567890" },
+                { name: "Bar Catorce", address: "Dirección Catorce", openingHours: "20:30 - 03:00", rating: 3.8, specialty: "Pizzería", atmosphere: "Familiar y divertido", image: "https://placekitten.com/300/213", maps: "https://maps.google.com/?q=-34.9065,-56.1845", contact: "https://wa.me/1234567890" },
+                { name: "Bar Quince", address: "Dirección Quince", openingHours: "19:30 - 02:30", rating: 4.6, specialty: "Barbacoa", atmosphere: "Vibrante y animado", image: "https://placekitten.com/300/214", maps: "https://maps.google.com/?q=-34.9108,-56.1895", contact: "https://wa.me/1234567890" },
+            ];
+
+            var cardContainer = document.getElementById("cardContainer");
+
+            bars.forEach(function(bar) {
+                var card = document.createElement("div");
+                card.className = "card";
+                card.innerHTML = `
+                    <img src="${bar.image}" alt="${bar.name}">
+                    <h3>${bar.name}</h3>
+                    <p><strong>Dirección:</strong> ${bar.address}</p>
+                    <p><strong>Horario de Apertura:</strong> ${bar.openingHours}</p>
+                    <p><strong>Calificación:</strong> ${bar.rating}</p>
+                    <p><strong>Especialidad:</strong> ${bar.specialty}</p>
+                    <p><strong>Tipo de Ambiente:</strong> ${bar.atmosphere}</p>
+                    <p><a href="${bar.maps}" target="_blank">Ver en Maps</a></p>
+                    <p><a href="${bar.contact}" target="_blank">Contactar por WhatsApp</a></p>
+                `;
+                cardContainer.appendChild(card);
+            });
+        });
+
+        function searchCards() {
+            var input, filter, cards, card, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = normalizeString(input.value).toUpperCase();
+            cards = document.getElementsByClassName("card");
+
+            for (i = 0; i < cards.length; i++) {
+                card = cards[i];
+                txtValue = normalizeString(card.textContent || card.innerText).toUpperCase();
+                if (txtValue.indexOf(filter) > -1) {
+                    card.style.display = "";
+                } else {
+                    card.style.display = "none";
+                }
+            }
+        }
+
+        function normalizeString(s) {
+            return s.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        }
+    </script>
+
+</body>
+</html>

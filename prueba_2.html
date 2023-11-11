@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            width: 95%;
+            margin: 0 auto;
+            position: relative;
+            height: 60px;
+        }
+
+        .header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.5;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            width: 95%; /* Ajusta el ancho del contenedor al 95% */
+            margin: 0 auto; /* Centra el contenedor en la pantalla */
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* Media query para dispositivos móviles */
+        @media only screen and (max-width: 600px) {
+            th, td {
+                display: block;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            th, td {
+                /* Ajusta el espacio entre las celdas para mejorar la legibilidad */
+                padding: 10px;
+                /* Agrega un borde inferior para separar las filas en dispositivos móviles */
+                border-bottom: 1px solid #ddd;
+            }
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <img src="https://elenviador.com/wp-content/uploads/2021/01/gastronomia-mexicana.jpg" alt="Imagen gastronómica transparente">
+        <h2>Ejemplo de Tabla con Encabezado Fijo</h2>
+    </div>
+    
+    <div class="table-container">
+        <input type="text" id="myInput" onkeyup="searchTable()" placeholder="Buscar...">
+        <table>
+            <thead class="sticky-header">
+                <tr>
+                    <th>Nombre del Bar</th>
+                    <th>Dirección</th>
+                    <th>Horario de Apertura</th>
+                    <th>Calificación</th>
+                    <th>Especialidad</th>
+                    <th>Tipo de Ambiente</th>
+                    <th>Maps</th>
+                    <th>Contacto</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Bar Uno</td>
+                    <td>Dirección Uno</td>
+                    <td>18:00 - 02:00</td>
+                    <td>4.5</td>
+                    <td>Tapas</td>
+                    <td>Ambiente relajado</td>
+                    <td><a href="https://maps.google.com/?q=-34.9075,-56.1919" target="_blank">Ver en Maps</a></td>
+                    <td><a href="https://wa.me/1234567890" target="_blank">Contactar por WhatsApp</a></td>
+                </tr>
+                <tr>
+                    <td>Bar Dos</td>
+                    <td>Dirección Dos</td>
+                    <td>17:00 - 01:00</td>
+                    <td>4.0</td>
+                    <td>Cervezas artesanales</td>
+                    <td>Estilo moderno</td>
+                    <td><a href="https://maps.google.com/?q=-34.9105,-56.1829" target="_blank">Ver en Maps</a></td>
+                    <td><a href="https://wa.me/1234567890" target="_blank">Contactar por WhatsApp</a></td>
+                </tr>
+                <tr>
+                    <td>Bar Tres</td>
+                    <td>Dirección Tres</td>
+                    <td>20:00 - 03:00</td>
+                    <td>4.8</td>
+                    <td>Cocktails</td>
+                    <td>Atmósfera elegante</td>
+                    <td><a href="https://maps.google.com/?q=-34.9067,-56.1910" target="_blank">Ver en Maps</a></td>
+                    <td><a href="https://wa.me/1234567890" target="_blank">Contactar por WhatsApp</a></td>
+                </tr>
+                <tr>
+                    <td>Bar Cuatro</td>
+                    <td>Dirección Cuatro</td>
+                    <td>19:00 - 02:30</td>
+                    <td>3.5</td>
+                    <td>Parrilla</td>
+                    <td>Estilo rústico</td>
+                    <td><a href="https://maps.google.com/?q=-34.9085,-56.1900" target="_blank">Ver en Maps</a></td>
+                    <td><a href="https://wa.me/1234567890" target="_blank">Contactar por WhatsApp</a></td>
+                </tr>
+                <tr>
+                    <td>Bar Cinco</td>
+                    <td>Dirección Cinco</td>
+                    <td>18:30 - 01:00</td>
+                    <td>4.2</td>
+                    <td>Coctelería</td>
+                    <td>Ambiente animado</td>
+                    <td><a href="https://maps.google.com/?q=-34.9055,-56.1879" target="_blank">Ver en Maps</a></td>
+                    <td><a href="https://wa.me/1234567890" target="_blank">Contactar por WhatsApp</a></td>
+                </tr>
+                <tr>
+                    <td>Bar Seis</td>
+                    <td>Dirección Seis</td>
+                    <td>20:30 - 02:30</td>
+                    <td>4.6</td>
+                    <td>Vinos</td>
+                    <td>Estilo vintage</td>
+                    <td><a href="https://maps.google.com/?q=-34.9095,-56.1869" target="_blank">Ver en Maps</a></td>
+                    <td><a href="https://wa.me/1234567890" target="_blank">Contactar por WhatsApp</a></td>
+                </tr>
+                <tr>
+                    <td>Bar Siete</td>
+                    <td>Dirección Siete</td>
+                    <td>19:00 - 02:00</td>
+                    <td>4.1</td>
+                    <td>Tapas y música en vivo</td>
+                    <td>Ambiente acogedor</td>
+                    <td><a href="https://maps.google.com/?q=-34.9075,-56.1919" target="_blank">Ver en Maps</a></td>
+                    <td><a href="https://wa.me/1234567890" target="_blank">Contactar por WhatsApp</a></td>
+                </tr>
+                <tr>
+                    <td>Bar Ocho</td>
+                    <td>Dirección Ocho</td>
+                    <td>18:30 - 01:30</td>
+                    <td>4.4</td>
+                    <td>Comida gourmet</td>
+                    <td>Estilo contemporáneo</td>
+                    <td><a href="https://maps.google.com/?q=-34.9085,-56.1839" target="_blank">Ver en Maps</a></td>
+                    <td><a href="https://wa.me/1234567890" target="_blank">Contactar por WhatsApp</a></td>
+                </tr>
+                <tr>
+                    <td>Bar Nueve</td>
+                    <td>Dirección Nueve</td>
+                    <td>19:30 - 02:00</td>
+                    <td>3.9</td>
+                    <td>Cervezas y pizza</td>
+                    <td>Ambiente joven</td>
+                    <td><a href="https://maps.google.com/?q=-34.9105,-56.1909" target="_blank">Ver en Maps</a></td>
+                    <td><a href="https://wa.me/1234567890" target="_blank">Contactar por WhatsApp</a></td>
+                </tr>
+                <tr>
+                    <td>Bar Diez</td>
+                    <td>Dirección Diez</td>
+                    <td>20:00 - 03:00</td>
+                    <td>4.7</td>
+                    <td>Cocktails y música en vivo</td>
+                    <td>Estilo bohemio</td>
+                    <td><a href="https://maps.google.com/?q=-34.9096,-56.1875" target="_blank">Ver en Maps</a></td>
+                    <td><a href="https://wa.me/1234567890" target="_blank">Contactar por WhatsApp</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function searchTable() {
+            var input, filter, table, tr, td, i, j, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.querySelector("table");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                var display = "none";
+                for (j = 0; j < tr[i].cells.length; j++) {
+                    td = tr[i].cells[j];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            display = "";
+                            break;
+                        }
+                    }
+                }
+                tr[i].style.display = display;
+            }
+        }
+    </script>
+
+</body>
+</html>
